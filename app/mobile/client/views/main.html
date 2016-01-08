@@ -1,0 +1,28 @@
+<template name="main">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-4">
+            Test page that should display content from Server
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-4">
+            <h3>Meteor informations</h3>
+            <pre>{{getMeteorInfos}}</pre>
+        </div>
+    </div>
+    {{#with oneCite}}
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-4">
+                <h3>One cite from Citation collection</h3>
+                <div class="valign-wrapper">
+                    <figure class="valign">
+                        <blockquote cite="">
+                            “{{ cite }}”
+                        </blockquote>
+                        <figcaption>{{ author }}</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    {{/with}}
+</template>

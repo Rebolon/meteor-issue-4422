@@ -1,0 +1,8 @@
+settings.json
+package.json
+.idea
+passenger.*.pid*
+passenger.*.log
+build/*
+*.keystore
+npm-debug.log

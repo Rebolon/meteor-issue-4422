@@ -1,0 +1,32 @@
+{
+  "name": "webapp-mobile",
+  "author": "Benjamin RICHARD <richard.tribes@gmail.com>",
+  "version": "1.0.0",
+  "licence": "Proprietary",
+  "config": {
+    "rooturl": "",
+    "mongourl": "",
+    "mongooplogurl": "",
+    "mailurl": "",
+    "port": "3002",
+    "packagedirs": "../../packages/",
+    "settingsfile": "settings.dist.json",
+    "testsettingsfile": "settings.tests.dist.json",
+    "testpackagename": "",
+    "deploysitename": "",
+    "buildfolder": "../../build/mobile/",
+    "mobileserver": "",
+    "javakeystore": "",
+    "javakeystorealiasname": ""
+  },
+  "scripts": {
+    "start": "../../tools/bin/start.sh",
+    "start-passenger": "../../tools/bin/start-passenger.sh",
+    "debug": "../../tools/bin/debug.sh",
+    "test": "../../tools/bin/test.sh",
+    "update": "../../tools/bin/update.sh",
+    "deploy": "../../tools/bin/deploy.sh",
+    "build": "../../tools/bin/build.sh",
+    "sign-apk": "../../tools/bin/sign-apk.sh"
+  }
+}
