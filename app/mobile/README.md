@@ -1,82 +1,37 @@
-#Meteor Boilerplate
+#ISSUE 4422
 
 ##Introduction
 
-A simple Boilerplate with all required packages for devlopment
-Web applications are splitted in app folder. There is one per aim : mobile only, desktop, admin only, service for
-server only
-All packages are in packages folder
-We use sass for MaterializeCss or Fezvrata material and sources files are in tools folder
-Usually you should store all pre-processed files in tools and use your prefered workflow to transpile your files into
-the correct folder. You might also use meteor package for preprocess : less, fourseven:scss, ... it's up to you to 
-choose.
+cd app/mobile
+cp package.dist.json package.json
+vim package.json and set 
+    config.rooturl : http://ServerIp:Port
+    config.port : same port than in config.rootUrl
+    config.mobileserver: the same value than in config.rootUrl
+npm run-script build
+npm run-script sign-apk // you need to define config.javakeystore* in package.json, but you can also sign manually your apk
 
-MaterializeCSS:
- * font are copyed into app/project/public/font
- * css are generated from preprocessing tools into app/project/client/css
- * js are copyed into app/project/client/common
- 
-Fezvrata:
-@TODO finish
+##Reproduction
 
-##Installation
+Run the server on the same server than http://ServerIp, and with the same package.json
+Install the apk to an emaulator and an android smartphone
 
-If you are on windows or linux : 
-
-    edit package.json and set scripts.start to bin/start.sh or bin\\start.bat
-    edit package.json and set scripts.test to bin/test.sh or bin\\test.bat
+###Open a browser and go to http://ServerIp:Port
+Expected : you should see a page with 
+    isServer: true
+    isClient: false
+    isCordova: false
+    rootUrl: http://ServerIP:Port/
+    ddpUrl: http://ServerIP:Port/
+    mobileRootUrl: http://ServerIP:Port
+    mobileDdpUrl: http://ServerIP:Port
     
-Copy the package.dist.json into package.json
+    And also on cite at bottom
 
-    cp package.dist.json package.json
-    edit package.json with your informations
-        rooturl: Meteor root_url
-        mongourl: Meteor mongo_url
-        mailurl: Meteor mail_url
-        port: Meteor port
-        packagedirs: Meteor package_dirs
-        settingsfile: Meteor settings file
-        testsettingsfile: Meteor settings file for your test
-        testpackagename: Name of the package to test when running "npm test"
+###Open the application in the emulator
+Expected : the same thing that previously
+Real : It begins with the right datas, then after the app get the cache refreshed, it refresh the app and nothing appear, or with wrong values
 
-##Usage
-
-Start your app with
-
-    npm start
-    
-Edit the settings of your app with settings.dist.json 
-
-    cp settings.dist.json settings.json
-    edit required information
-    config.collections.prefix is the prefix used for your collection :
-        var MyCol = new Meteor.Collection(Meteor.settings.config.collections.prefix + "whatYouWant");
-
-Test a package with :
-
-    edit package.json and set config.testpackagename to "TheNameOfThePackageToTest"
-    npm test
-    open your browser to the required url (localhost:3000)
-    
-##Deployment
-For demos and beta : set a deploy name in the package.js and run npm run-script deploy command.
-
-For production, passenger phusion, npm mup package or just meteor build command and do it your self.
-
-##Take care
-
-Follow security requirements : 
-
-* http://joshowens.me/the-curious-case-of-the-unknowing-leaky-meteor-security/
-* http://joshowens.me/meteor-security-101/ 
-* http://joshowens.me/meteor-security-201/
-* summary of 3 previous : https://meteorjs.club/MeteorSecurityChecklist.pdf?__s=ysuohrq1qzqkx56usqfm
-* http://blog.east5th.co/2015/08/31/incomplete-argument-checks/
-
-##TODO
-
-Use METEOR_SETTINGS env var instead of --settings aFile
-In production this is the way it works. But the fact is how to do it in an auto way ? for linux it's quite simple
-but for windows, in a batch file, it's harder for me. Any help is welcome !
-
-Improve the usage of Handlebars with let and each ... in ... : http://devblog.me/no-data-context.html
+###Open the application in the smartphone
+Expected : the same thing that in first test
+Real : the same thing thant in emulator
